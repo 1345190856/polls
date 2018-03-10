@@ -6,13 +6,19 @@ from django.views import generic
 
 from .models import Question, Choice
 
+# default use a template <appname>/<modelname>_detail.html
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
+    # ListView automatically generated context variable "question_list",
+    # override with context_object_name
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
         return Question.objects.order_by('-pub_date')[:5]
 
+# each generic needs know model,
+# capture primary key value called 'pk' in the URL,
+# default use a template <appname>/<modelname>_detail.html
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'

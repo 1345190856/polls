@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
         published in the future).
         """
         # returns a queryset containing Questions whose pub_date is less than or equal to timezone.now.
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now(), ).order_by('-pub_date')[:5]
 
 # each generic needs know model,
 # capture primary key value called 'pk' in the URL,
